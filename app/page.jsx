@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect} from "react";
 import Navbar from "./components/navbar";
 import Link from "next/link";
 import { useEmblaAutoplay } from "@/lib/useEmblaAutoplay";
@@ -84,9 +84,28 @@ const cards = [
 ];
 
 
+import { usePathname, useRouter } from "next/navigation";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { app } from "./firebase"; 
+
 const HomePage = () => {
+  const router = useRouter()
   const [isSignupOpen, setIsSignupOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [flag, setFlag] = useState(false);
+
+   useEffect(() => {
+      const auth = getAuth(app);
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setFlag(true);
+        } else {
+          setFlag(false);
+        }
+      });
+  
+      return () => unsubscribe();
+    });
   const autoplay = useEmblaAutoplay();
   return (
     <>
@@ -109,18 +128,22 @@ const HomePage = () => {
         <h2 className="text-4xl md:text-5xl font-bold mb-8">
           A Highschooler's Guide to AI - ML
         </h2>
-        <p className="max-w-2xl mx-auto text-lg">
+        <p className="max-w-2xl mx-auto text-lg mb-6">
           Learn Artificial Intelligence and Machine Learning — taught by
           students, for students.
         </p>
-        <div className="mt-6 relative z-49">
+        {!flag && <div className="relative z-49">
             <button
               className="bg-black text-white font-semibold px-6 py-2 rounded-full transition"
               onClick={() => setIsSignupOpen(true)}
             >
               Get Started
             </button>
-          </div>
+          </div>}
+          {flag && <Link className="relative z-49 bg-black text-white font-semibold px-6 py-2 rounded-full transition" href="/guide">
+            
+              Continue to Guide
+          </Link>}
       </section>
 
       {/* About Section */}
