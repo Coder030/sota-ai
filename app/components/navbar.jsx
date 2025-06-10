@@ -1,42 +1,145 @@
-"use client"
+"use client";
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { app } from "../firebase"; // Adjust path if needed
+import { FiMenu, FiX } from "react-icons/fi";
+import LoginModal from "./LoginModal";
+import SignupModal from "./SignupModal";
 
 function Navbar() {
-  const pathname = usePathname()
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const [flag, setFlag] = useState(false);
+  const [currentName, setCurrentName] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Our Team', path: '/team' },
-    { name: 'Guide', path: '/guide' },
-    { name: 'Lectures', path: '/lectures' },
-  ]
+    { name: "Home", path: "/" },
+    { name: "Our Team", path: "/team" },
+    { name: "Guide", path: "/guide" },
+    { name: "Lectures", path: "/lectures" },
+  ];
 
+  useEffect(() => {
+    const auth = getAuth(app);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setFlag(true);
+        setCurrentName(user.displayName || user.email.split("@")[0]);
+      } else {
+        setFlag(false);
+        setCurrentName("");
+      }
+    });
+
+    return () => unsubscribe();
+  }, [pathname]);
+
+  if (pathname === "/login" || pathname === "/signup") {
+    return null;
+  }
+  const [isSignupOpen, setIsSignupOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  
   return (
-    <header className="relative z-50 flex justify-between items-center px-6 py-4 bg-white shadow-md">
+    <header className="relative z-50 bg-white shadow-md px-6 py-4 flex justify-between items-center">
+      <SignupModal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)} login={() => setIsLoginOpen(true)}  className="relative flex z-50"/>
+      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)}  signup={() => {setIsSignupOpen(true)}} className="relative flex z-50"/>
+      {/* Logo or Title */}
       <h1 className="text-2xl font-bold text-indigo-600">
-        <Link href="/">
-          SOTA - AI
-        </Link>
+        <Link href="/">SOTA - AI</Link>
       </h1>
-      <nav className="space-x-8">
+
+      {/* Desktop Links */}
+      <nav className="hidden sm:flex space-x-8 items-center">
         {navLinks.map(({ name, path }) => {
-          const isActive = pathname === path
+          const isActive = pathname === path;
           return (
             <Link
               key={path}
               href={path}
-              className={`text-[20px] hover:underline ${isActive ? 'underline' : ''}`}
+              className={`text-[18px] font-medium transition hover:underline ${
+                isActive ? "underline text-black" : "text-gray-500"
+              }`}
             >
               {name}
             </Link>
-          )
+          );
         })}
+        {!flag ? (
+          <>
+              <button className="text-indigo-600 font-semibold text-[16px] hover:underline" onClick={() => setIsLoginOpen(true)}>
+                LOG IN
+              </button>
+            
+              <button className="ml-2 bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700" onClick={() => {setIsSignupOpen(true)}}>
+                SIGN UP
+              </button>
+
+          </>
+        ) : (
+          <div className="flex items-center gap-2 ml-4">
+            <div className="bg-indigo-600 text-white rounded-full w-[40px] h-[40px] flex items-center justify-center text-lg">
+              {currentName.charAt(0).toUpperCase()}
+            </div>
+            <p className="text-[16px]">{currentName}</p>
+          </div>
+        )}
       </nav>
+
+      {/* Mobile Menu Button */}
+      <div className="sm:hidden text-2xl" onClick={() => setMenuOpen(!menuOpen)}>
+        {menuOpen ? <FiX /> : <FiMenu />}
+      </div>
+
+      {/* Mobile Menu Drawer */}
+      {menuOpen && (
+        <div className="absolute top-[72px] left-0 w-full bg-white shadow-lg sm:hidden flex flex-col items-center p-4 z-50">
+          {navLinks.map(({ name, path }) => {
+            const isActive = pathname === path;
+            return (
+              <Link
+                key={path}
+                href={path}
+                className={`text-[18px] py-2 w-full text-center ${
+                  isActive ? "text-indigo-600 font-semibold" : "text-gray-700"
+                }`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {name}
+              </Link>
+            );
+          })}
+
+          {!flag ? (
+            <div className="flex flex-col w-full mt-4 gap-2">
+              <Link href="/login">
+                <button className="text-indigo-600 w-full text-center py-2 rounded hover:underline">
+                  LOG IN
+                </button>
+              </Link>
+              <Link href="/signup">
+                <button className="bg-indigo-600 text-white w-full py-2 rounded-md hover:bg-indigo-700">
+                  SIGN UP
+                </button>
+              </Link>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center mt-4">
+              <div className="bg-indigo-600 text-white rounded-full w-[40px] h-[40px] flex items-center justify-center text-lg mb-2">
+                {currentName.charAt(0).toUpperCase()}
+              </div>
+              <p className="text-[16px]">{currentName}</p>
+            </div>
+          )}
+        </div>
+      )}
     </header>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

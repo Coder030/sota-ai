@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Navbar from "./components/navbar";
 import Link from "next/link";
 import { useEmblaAutoplay } from "@/lib/useEmblaAutoplay";
@@ -16,9 +16,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import SignupModal from "./components/SignupModal";
 
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Sphere } from '@react-three/drei'
+import LoginModal from "./components/LoginModal";
 
 function RotatingSphere() {
   const sphereRef = useRef()
@@ -83,6 +85,8 @@ const cards = [
 
 
 const HomePage = () => {
+  const [isSignupOpen, setIsSignupOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const autoplay = useEmblaAutoplay();
   return (
     <>
@@ -99,6 +103,8 @@ const HomePage = () => {
       <Navbar />
       </header>
       {/* Hero Section */}
+      <SignupModal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)} login={() => setIsLoginOpen(true)}  className="relative flex z-50"/>
+      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)}  signup={() => {setIsSignupOpen(true)}} className="relative flex z-50"/>
       <section className="text-center py-30 bg-gradient-to-r from-white to-grey text-black border-b-1">
         <h2 className="text-4xl md:text-5xl font-bold mb-8">
           A Highschooler's Guide to AI - ML
@@ -107,11 +113,14 @@ const HomePage = () => {
           Learn Artificial Intelligence and Machine Learning — taught by
           students, for students.
         </p>
-        <div className="mt-6 relative z-50">
-          <button className="bg-black text-white font-semibold px-6 py-2 rounded-full transition">
-            Get Started
-          </button>
-        </div>
+        <div className="mt-6 relative z-49">
+            <button
+              className="bg-black text-white font-semibold px-6 py-2 rounded-full transition"
+              onClick={() => setIsSignupOpen(true)}
+            >
+              Get Started
+            </button>
+          </div>
       </section>
 
       {/* About Section */}
