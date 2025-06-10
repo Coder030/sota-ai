@@ -6,21 +6,21 @@ import Image from 'next/image'
 const teamMembers = [
   {
     name: "Kartik Garg",
-    photo: "../favicon.ico",
+    photo: "/ryan.webp",
     kaggle: "https://www.kaggle.com/bigochampion",
     linkedin: "https://www.linkedin.com/in/kartik-garg-b02938305/",
     github: "https://github.com/Coder030",
   },
   {
     name: "Savyasachi",
-    photo: "../favicon.ico",
+    photo: "/justin_ji.webp",
     kaggle: "https://www.kaggle.com/",
     linkedin: "https://www.linkedin.com/",
     github: "https://github.com/",
   },
   {
     name: "Aarav Sharma",
-    photo: "../favicon.ico",
+    photo: "/peng_bai.webp",
     kaggle: "https://www.kaggle.com/",
     linkedin: "https://www.linkedin.com/",
     github: "https://github.com/",
@@ -52,7 +52,7 @@ function Team() {
                   alt={founder.name}
                   className="w-25 h-25 rounded-full mb-3 mt-2"
                 />
-                <h2 className="text-[25px] font-semibold text-center mb-[5px]">{founder.name}</h2>
+                <h2 className="text-[22px] font-semibold text-center mb-[5px]">{founder.name}</h2>
 
                 {/* Hover Info Below Name */}
                 <div className="flex flex-col items-center mt-4 transition-all duration-300 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto h-[60px]">

@@ -15,7 +15,7 @@ function Navbar() {
   ]
 
   return (
-    <header className="flex justify-between items-center px-6 py-4 bg-white shadow-md">
+    <header className="relative z-50 flex justify-between items-center px-6 py-4 bg-white shadow-md">
       <h1 className="text-2xl font-bold text-indigo-600">
         <Link href="/">
           SOTA - AI
