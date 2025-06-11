@@ -9,14 +9,16 @@ import { SiTicktick } from "react-icons/si";
 import { Progress } from "../../components/ui/progress"
 import { Atom } from "react-loading-indicators";
 import { useRouter } from "next/navigation";
+import LoginModal from "../components/LoginModal";
+import SignupModal from "../components/SignupModal";
 
 
 const guideCategories = [
   {
     title:"Calculus in AI and ML",
     modules: [
-      {id: "diff_calc_part_deriv", title:"Differential Calculus and Partial Derivatives", description: "Differential calculus enables AI/ML models to optimize functions, compute gradients, and enhance learning efficiency."},
-      {id: "gradients_desc", title:"Gradients and Gradient Descent", description: "Partial derivatives measure how a function changes with respect to one variable, while gradients guide optimization in AI/ML models."},
+      {id: "diff_calc_part_deriv", title:"Differential Calculus and Partial Derivatives", description: "Differential calculus enables AI/ML models to optimize functions, compute gradients, and enhance learning efficiency, while Partial derivatives measure how a function changes with respect to one variable"},
+      {id: "gradients_desc", title:"Gradients and Gradient Descent", description: "Gradient descent is a numerical method for iteratively minimizing a function by repeatedly taking steps in the direction of the negative gradient. "},
     ]
   },
   {
@@ -40,7 +42,8 @@ const GuidePage = () => {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [completedModules, setCompletedModules] = useState({});
-
+  const [isSignupOpen, setIsSignupOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
 useEffect(() => {
@@ -62,14 +65,32 @@ useEffect(() => {
 
   return () => unsubscribe();
 }, []);
+useEffect(() => {
+  if(!user){
+    setIsLoginOpen(true);
+  }
+}, [user])
+useEffect(() => {
+  if(user){
+    setIsLoginOpen(false);
+  }
+}, [user])
 
   // ✅ Count completed modules per sub-topic (Statistics, Matrix)
   const countCompletedInCategory = (category) => {
     const total = category.modules.length;
-    const completed = category.modules.filter(module => completedModules[module.id]).length;
+    const completed = category.modules.filter(module => completedModules[module.id] === "completed").length;
+    console.log(category.title, total)
     return (completed * 100)/total;
   };
 
+  console.log(countCompletedInCategory({
+    title:"Calculus in AI and ML",
+    modules: [
+      {id: "diff_calc_part_deriv", title:"Differential Calculus and Partial Derivatives", description: "Differential calculus enables AI/ML models to optimize functions, compute gradients, and enhance learning efficiency, while Partial derivatives measure how a function changes with respect to one variable"},
+      {id: "gradients_desc", title:"Gradients and Gradient Descent", description: "Gradient descent is a numerical method for iteratively minimizing a function by repeatedly taking steps in the direction of the negative gradient. "},
+    ]
+  },))
   const countTotalCompleted = () => {
     var all = 0;
     var sum = 0;
@@ -88,6 +109,8 @@ useEffect(() => {
   const completedPercentage = (countTotalCompleted()[0] / countTotalCompleted()[2]) * 100
   return (
   <div className="min-h-screen bg-gray-50 text-gray-800">
+    <SignupModal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)} login={() => setIsLoginOpen(true)}  className="relative flex z-50"/>
+    <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)}  signup={() => {setIsSignupOpen(true)}} className="relative flex z-50"/>
     <header className="z-50">
       <Navbar />
     </header>
@@ -179,6 +202,7 @@ useEffect(() => {
           ))}
         </div>
       )}
+      
       
     </section>
   </div>

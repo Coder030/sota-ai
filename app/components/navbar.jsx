@@ -64,7 +64,7 @@ function Navbar() {
   };
 
   return (
-    <header className="relative z-50 bg-white shadow-md px-6 py-4 flex justify-between items-center">
+    <header className="relative z-50 bg-white shadow-md px-6 py-4 flex justify-between items-center ">
       <SignupModal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)} login={() => setIsLoginOpen(true)} />
       <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} signup={() => setIsSignupOpen(true)} />
 
@@ -75,8 +75,8 @@ function Navbar() {
       
       {/* Desktop Navbar */}
       <nav className="hidden sm:flex space-x-8 items-center">
-        <select className="p-2 border rounded-md text-gray-700" value={selectedTopic} onChange={handleTopicChange}>
-      <option value="" disabled>Select your topic</option>
+        <select className="p-2 border-none w-[100px] rounded-md text-gray-700" value={selectedTopic} onChange={handleTopicChange}>
+      <option value="" disabled>Sections</option>
       {topics.map((topic, idx) => (
         <option key={idx} value={topic}>{topic}</option>
       ))}

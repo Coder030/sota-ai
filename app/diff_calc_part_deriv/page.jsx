@@ -9,15 +9,17 @@ import img1 from "./img1.png"
 import Image from "next/image";
 import 'katex/dist/katex.min.css';
 import { renderToString } from 'katex';
+import { TiTick } from "react-icons/ti";
+
 import "./style.css"
-import Confetti from "react-confetti"; 
+import Confetti from 'react-confetti-boom';
 
 const guideCategories = [
   {
     title:"Calculus in AI and ML",
     modules: [
-      {id: "diff_calc_part_deriv", title:"Differential Calculus and Partial Derivatives", description: "Differential calculus enables AI/ML models to optimize functions, compute gradients, and enhance learning efficiency."},
-      {id: "gradients_desc", title:"Gradients and Gradient Descent", description: "Partial derivatives measure how a function changes with respect to one variable, while gradients guide optimization in AI/ML models."},
+      {id: "diff_calc_part_deriv", title:"Differential Calculus and Partial Derivatives", description: "Differential calculus enables AI/ML models to optimize functions, compute gradients, and enhance learning efficiency, while Partial derivatives measure how a function changes with respect to one variable"},
+      {id: "gradients_desc", title:"Gradients and Gradient Descent", description: "Gradient descent is a numerical method for iteratively minimizing a function by repeatedly taking steps in the direction of the negative gradient. "},
     ]
   },
   {
@@ -91,11 +93,14 @@ const DiffCalcPage = () => {
   return (
     <><Navbar />
     
-    <div className="min-h-screen bg- text-gray-800 flex">
+    <div className="min-h-screen bg- text-gray-800 flex ">
       
 
       {/* Sidebar Navigation */}
-      <div className="min-w-[350px] bg-white shadow-md p-4 min-h-screen">
+      <div className="w-[350px] fixed top-0 left-0 h-screen overflow-y-auto bg-white shadow-md p-4 z-10">
+        <p className="text-[24px] mb-[20px] font-bold text-center">Mathematical Prerequisites</p>
+<hr />
+<div className="mt-[30px]"></div>
   {guideCategories.map((category) => (
     <div key={category.title} className="border-b mb-4">
       <h4 className="text-lg font-semibold mb-2">{category.title}</h4>
@@ -114,7 +119,8 @@ const DiffCalcPage = () => {
 
 
       {/* Module Content */}
-      <div className="flex-grow p-6 mx-[100px]">
+      <div className="flex-grow p-6 ml-[400px]">
+
         <h2 className="text-3xl font-black mb-4 mt-[30px]">Differential Calculus</h2>
         <p className="text-lg"><u>Basic definition of a derivative:</u> The derivative of a function is defined as the slope of a tangent to the function at a particular point</p>
         <br /><br />
@@ -169,21 +175,52 @@ const DiffCalcPage = () => {
     <br />
         {/* Dropdown to Update Progress */}
         <p className="text-lg">You don't need to remember all of these for AI and ML. The chain rule is one of the most useful of the above, and you will find its use when you read about <i>backpropagation</i> in <b>Neural Networks.</b></p>
-        <div className="mt-6 flex items-center justify-center">
-          <label className="font-semibold text-gray-700 mr-[10px]">Module Progress : </label>
-          <Select options={[ { value: 'not started', label: 'Not Started' },
-  { value: 'completed', label: 'Completed' },
-  { value: 'skipped', label: 'Skipped' }]} onChange={(value) => updateModuleStatus(value.value)} className="w-[200px]"/>
-          {/* <select
-            value={status}
-            onChange={(e) => updateModuleStatus(e.target.value)}
-            className="p-2 border rounded-md mt-2"
-          >
-            <option value="not started">Not Started</option>
-            <option value="completed">Completed</option>
-            <option value="skipped">Skipped</option>
-          </select> */}
-        </div>
+        <br />
+        <h2 className="text-3xl font-black mb-4 mt-[30px]">Partial Derivatives</h2>
+        <p className="text-lg">Imagine you're hiking up a hill. But instead of just one path forward, you're walking on a weird surface with slopes in many directions. The big question is : </p>
+        <br />
+        <p className="text-lg text-center"><b>"Which way should you step to go uphill fastest?”</b></p>
+        <br />
+        <p className="text-lg pb-[30px]">This is exactly what partial derivatives help us figure out — how a function (like loss or error) changes with respect to each variable, when others are held constant.</p>
+        <hr />
+        <p className="text-lg pt-[30px]">A partial derivative measures how a multivariable function changes when only one variable changes, and all others are frozen in place. For example, if you have a function:</p>
+          <br />
+      <div className="text-lg flex justify-center" dangerouslySetInnerHTML={{ __html: renderToString("f(x, y) = 3x^2 + 2xy + y^2") }} />
+          <br />
+          <p className="text-lg">Then:</p>
+          <ul style={{"list-style-type": "disc"}}>
+          <li className="text-lg">The partial derivative <b>w.r.t. x</b> is (y is assumed to be constant): </li>
+          <br />
+          <div className="text-lg flex justify-center" dangerouslySetInnerHTML={{ __html: renderToString("\\frac{\\partial f}{\\partial x} = 6x + 2y") }} /> 
+          <br />
+          <li className="text-lg">The partial derivative <b>w.r.t. y</b> is (x is assumed to be constant): </li>
+          <br />
+          <div className="text-lg flex justify-center" dangerouslySetInnerHTML={{ __html: renderToString("\\frac{\\partial f}{\\partial y} = 2x + 2y") }} /> 
+          </ul>
+          <br /><p className="text-lg mb-[30px]">Each of these tells you the slope in that direction.</p>
+
+          <hr />
+          <div className="flex justify-center items-center mt-[70px] mb-[80px]">
+  <div className="flex items-center justify-center">
+    <label className="font-semibold text-gray-700 mr-[10px] text-[30px]">
+      Module Progress :
+    </label>
+
+    <Select
+      options={[
+        { value: "not started", label: "Not Started" },
+        { value: "completed", label: "Completed" },
+        { value: "skipped", label: "Skipped" },
+      ]}
+      onChange={(value) => updateModuleStatus(value.value)}
+      className="w-[200px]"
+      menuPlacement="top"
+    />
+
+    {/* Move TiTick inside the same flex container */}
+    {status == "completed" && <TiTick size={"3em"} className="ml-[15px] text-green-600" />}
+  </div>
+</div>
       </div>
     </div>
     </>

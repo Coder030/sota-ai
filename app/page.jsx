@@ -4,18 +4,18 @@ import React from "react";
 import { useRef, useState, useEffect} from "react";
 import Navbar from "./components/navbar";
 import Link from "next/link";
-import { useEmblaAutoplay } from "@/lib/useEmblaAutoplay";
+import { useEmblaAutoplay } from "../lib/useEmblaAutoplay";
 import { IoPersonSharp } from "react-icons/io5";
 import { FaBookOpen, FaPenAlt, FaLaptopCode, FaRocket, FaLightbulb } from "react-icons/fa";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "../components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from "../components/ui/carousel";
 import SignupModal from "./components/SignupModal";
 
 import { Canvas, useFrame } from '@react-three/fiber'
