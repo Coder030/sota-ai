@@ -123,6 +123,8 @@ const DiffCalcPage = () => {
       <div className="flex-grow p-6 ml-[400px]">
 
         <h2 className="text-3xl font-black mb-4 mt-[30px]">Differential Calculus</h2>
+        <p>Authors: Kartik Garg, Trisanu Das</p>
+        <br />
         <p className="text-lg"><u>Basic definition of a derivative:</u> The derivative of a function is defined as the slope of a tangent to the function at a particular point</p>
         <br /><br />
         <div className="flex justify-center">

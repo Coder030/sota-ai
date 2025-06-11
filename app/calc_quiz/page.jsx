@@ -185,6 +185,8 @@ const [answers, setAnswers] = useState(Array(quizData.length).fill(null));
         {/* Content */}
         <div className="flex-grow p-6 ml-[400px]">
           <h2 className="text-3xl font-black mb-4 mt-[30px]">Problems</h2>
+          <p>Author: Kartik Garg</p>
+          <br />
           {problemsData.map((p, i) => (
             <div key={i} className="mb-6 p-4 border rounded-lg">
               <h3 className="text-xl font-semibold mb-2">{p.title}</h3>

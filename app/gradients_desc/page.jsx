@@ -116,7 +116,9 @@ const DiffCalcPage = () => {
       {/* Module Content */}
       <div className="flex-grow p-6 ml-[400px]">
 
-        <h2 className="text-3xl font-black mb-4 mt-[30px]">Analogy</h2>
+        <h2 className="text-3xl font-black mb-4 mt-[30px]">Gradients and Gradient Descent</h2>
+        <p>Authors: Kartik Garg, Trisanu Das</p>
+        <br />
         <p  className="text-lg">Imagine that you are standing at some point on a hill, and your goal is to get to the lowest point possible. So, you take small steps, always downhill.</p>
         <br /><br />
         <div className="flex justify-center">
