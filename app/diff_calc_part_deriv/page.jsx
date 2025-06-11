@@ -20,6 +20,7 @@ const guideCategories = [
     modules: [
       {id: "diff_calc_part_deriv", title:"Differential Calculus and Partial Derivatives", description: "Differential calculus enables AI/ML models to optimize functions, compute gradients, and enhance learning efficiency, while Partial derivatives measure how a function changes with respect to one variable"},
       {id: "gradients_desc", title:"Gradients and Gradient Descent", description: "Gradient descent is a numerical method for iteratively minimizing a function by repeatedly taking steps in the direction of the negative gradient. "},
+      {id: "calc_quiz", title:"Problems and Quizzes", description: "Solve problems and take quizzes to test your knowledge!"},
     ]
   },
   {
@@ -188,7 +189,7 @@ const DiffCalcPage = () => {
       <div className="text-lg flex justify-center" dangerouslySetInnerHTML={{ __html: renderToString("f(x, y) = 3x^2 + 2xy + y^2") }} />
           <br />
           <p className="text-lg">Then:</p>
-          <ul style={{"list-style-type": "disc"}}>
+          <ul style={{listStyleType: "disc"}}>
           <li className="text-lg">The partial derivative <b>w.r.t. x</b> is (y is assumed to be constant): </li>
           <br />
           <div className="text-lg flex justify-center" dangerouslySetInnerHTML={{ __html: renderToString("\\frac{\\partial f}{\\partial x} = 6x + 2y") }} /> 

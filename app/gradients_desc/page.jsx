@@ -23,6 +23,7 @@ const guideCategories = [
     modules: [
       {id: "diff_calc_part_deriv", title:"Differential Calculus and Partial Derivatives", description: "Differential calculus enables AI/ML models to optimize functions, compute gradients, and enhance learning efficiency, while Partial derivatives measure how a function changes with respect to one variable"},
       {id: "gradients_desc", title:"Gradients and Gradient Descent", description: "Gradient descent is a numerical method for iteratively minimizing a function by repeatedly taking steps in the direction of the negative gradient. "},
+      {id: "calc_quiz", title:"Problems and Quizzes", description: "Solve problems and take quizzes to test your knowledge!"},
     ]
   },
   {
@@ -139,30 +140,30 @@ const DiffCalcPage = () => {
         <div className="flex justify-center">
         <div className="bg-[#b3b3b5] w-[500px] h-[1px]"></div></div>
         <br /><br /><br />
-        <div class="text-base text-gray-800 space-y-4 ">
+        <div className="text-base text-gray-800 space-y-4 ">
   <p><span className="font-semibold">Weights and Biases:</span></p>
 
   <p>
-    In machine learning, we use an equation (called the <span class="font-semibold">loss function</span>) to measure how well our model is predicting the target values. 
+    In machine learning, we use an equation (called the <span className="font-semibold">loss function</span>) to measure how well our model is predicting the target values. 
     To improve the model, we adjust the <span className="font-semibold">coefficients</span> of the input variables — these are called  
-    <span class="font-semibold"> weights</span>. A weight controls 
-    <span class="italic"> how much influence</span> each input has on the final prediction. 
+    <span className="font-semibold"> weights</span>. A weight controls 
+    <span className="italic"> how much influence</span> each input has on the final prediction. 
     The larger the weight, the more that input matters.
   </p>
 
   <p>
-    The <span class="font-semibold">bias</span> is like the equation’s 
-    <span class="italic"> starting point</span> — it lets the model make non-zero predictions even when all inputs are zero. 
+    The <span className="font-semibold">bias</span> is like the equation’s 
+    <span className="italic"> starting point</span> — it lets the model make non-zero predictions even when all inputs are zero. 
     You can think of it as the intercept in a straight-line equation.
   </p>
 
-  <p><span class="font-semibold">Example:</span></p>
+  <p><span className="font-semibold">Example:</span></p>
 
   <p>
     Suppose we are predicting a student's test score based on four factors:
   </p>
 
-  <ul class="list-disc list-inside space-y-1">
+  <ul className="list-disc list-inside space-y-1">
     <li>Study hours (x₁)</li>
     <li>Sleep hours (x₂)</li>
     <li>Attendance (x₃)</li>
@@ -171,13 +172,13 @@ const DiffCalcPage = () => {
 
   <p>The prediction model can be written as:</p>
 
-  <p class="font-mono text-gray-700">
+  <p className="font-mono text-gray-700">
     ŷ = w₁·x₁ + w₂·x₂ + w₃·x₃ + w₄·x₄ + b
   </p>
 
   <p>
-    Here, <span class="font-semibold">w₁, w₂, w₃, w₄</span> are the weights showing how important each factor is, 
-    and <span class="font-semibold">b</span> is the bias that shifts the whole prediction up or down.
+    Here, <span className="font-semibold">w₁, w₂, w₃, w₄</span> are the weights showing how important each factor is, 
+    and <span className="font-semibold">b</span> is the bias that shifts the whole prediction up or down.
   </p>
 </div>
 <br /><br />

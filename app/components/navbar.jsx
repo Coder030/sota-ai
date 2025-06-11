@@ -30,6 +30,7 @@ function Navbar() {
   const navLinks = [
     { name: "Our Team", path: "/team" },
     { name: "Lectures", path: "/lectures" },
+     { name: "Guide", path: "/guide" },
   ];
 
   useEffect(() => {
@@ -54,14 +55,14 @@ function Navbar() {
   const [isSignupOpen, setIsSignupOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
-  const handleTopicChange = (e) => {
-    const topic = e.target.value;
-    setSelectedTopic(topic);
+  // const handleTopicChange = (e) => {
+  //   const topic = e.target.value;
+  //   setSelectedTopic(topic);
 
-    if (topic === "Mathematical Prerequisites") {
-      router.push("/math"); // Redirects to /math
-    }
-  };
+  //   if (topic === "Mathematical Prerequisites") {
+  //     router.push("/math"); // Redirects to /math
+  //   }
+  // };
 
   return (
     <header className="relative z-50 bg-white shadow-md px-6 py-4 flex justify-between items-center ">
@@ -75,12 +76,12 @@ function Navbar() {
       
       {/* Desktop Navbar */}
       <nav className="hidden sm:flex space-x-8 items-center">
-        <select className="p-2 border-none w-[100px] rounded-md text-gray-700" value={selectedTopic} onChange={handleTopicChange}>
+        {/* <select className="p-2 border-none w-[100px] rounded-md text-gray-700" value={selectedTopic} onChange={handleTopicChange}>
       <option value="" disabled>Sections</option>
       {topics.map((topic, idx) => (
         <option key={idx} value={topic}>{topic}</option>
       ))}
-    </select>
+    </select> */}
         {navLinks.map(({ name, path }) => (
           <Link
             key={path}

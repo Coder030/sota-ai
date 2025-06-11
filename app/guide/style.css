@@ -1,0 +1,33 @@
+.container {
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.section-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.section-container {
+  position: relative;
+}
+
+.section-item {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  border-radius: 50%;
+  margin-right: 10px;
+}
