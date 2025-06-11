@@ -27,7 +27,7 @@ function RotatingSphere() {
 
   useFrame(() => {
     if (sphereRef.current) {
-      sphereRef.current.rotation.y += 0.004 // Only Y-axis rotation
+      sphereRef.current.rotation.y += 0.008 // Only Y-axis rotation
     }
   })
 
@@ -140,10 +140,6 @@ const HomePage = () => {
               Get Started
             </button>
           </div>}
-          {flag && <Link className="relative z-49 bg-black text-white font-semibold px-6 py-2 rounded-full transition" href="/guide">
-            
-              Continue to Guide
-          </Link>}
       </section>
 
       {/* About Section */}
