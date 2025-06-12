@@ -14,6 +14,7 @@ import img2 from "./img2.png"
 import img3 from "./img3.png"
 import img4 from "./img4.png"
 import img5 from "./img5.png"
+import gif1 from "./gif1.gif"
 import { mathCategories } from "../mathCategories";
 
 
@@ -362,9 +363,15 @@ const Grad_Desc = () => {
           <p className="text-lg">An example of Gradient Descent at work is below:</p>
           <br /><br />
           <div className="flex justify-center ">
-            <Image src={img4} width={400} height={400} alt="slope" />
-            <Image src={img5} width={500} height={400} alt="slope" />
-          </div>
+  <Image
+    src={gif1} // Use the imported GIF
+    alt="Gradient Descent Animation"
+    width={700} // Adjust width and height as needed to fit your design
+    height={500}
+    unoptimized={true} // Add this if you want to use the GIF as-is without Next.js optimization.
+                       // GIFs often don't optimize well, so this is often needed.
+  />
+</div>
           <br />
           <br />
 

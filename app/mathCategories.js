@@ -13,6 +13,7 @@ export const mathCategories = [
       { id: "intro_matrs", title: "Introduction to Matrices", description: "This module provides a foundational understanding of matrices, including their structural properties, various classifications, and the standard notation used for representation and element identification." },
       { id: "Matr_add_and_subtr", title: "Matrix Addition and Subtraction", description: "Matrix addition and subtraction involve combining or differentiating corresponding elements of two matrices " },
       { id: "scalar_mult_matrix", title: "Scalar Multiplication of a Matrix", description: "Scalar multiplication of a matrix involves multiplying every individual element of the matrix by a single constant number (the scalar)." },
+      { id: "transp_mult_matr", title: "Transpose and Multiplication of Matrices", description: "Explore the fundamentals of matrix operations with an interactive module on transposition and multiplication." },
     ],
   },
 ];
