@@ -238,7 +238,7 @@ const DiffCalcPage = () => {
           <h2 className="text-3xl font-black mb-4 mt-[30px]">Partial Derivatives</h2>
           <p className="text-lg">Imagine you're hiking up a hill. But instead of just one path forward, you're walking on a weird surface with slopes in many directions. The big question is : </p>
           <br />
-          <p className="text-lg text-center"><b>"Which way should you step to go uphill fastest?”</b></p>
+          <p className="text-lg text-center"><b>"Which way should you step to go uphill / downhill fastest?”</b></p>
           <br />
           <p className="text-lg pb-[30px]">This is exactly what partial derivatives help us figure out — how a function (like loss or error) changes with respect to each variable, when others are held constant.</p>
           <hr />

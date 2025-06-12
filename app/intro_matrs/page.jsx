@@ -63,56 +63,136 @@ const Grad_Desc = () => {
 
   const quizQuestions = [
     {
-      question: "What is the primary goal of gradient descent in machine learning?",
+      question: "What is a matrix?",
       options: [
-        "To increase the model's error",
-        "To minimize the loss function",
-        "To randomly adjust model parameters",
-        "To visualize data distributions",
+        "A circular arrangement of numbers",
+        "A rectangular arrangement of objects in rows and columns",
+        "A single line of text",
+        "A list of random numbers",
       ],
-      correctAnswer: "To minimize the loss function",
+      correctAnswer: "A rectangular arrangement of objects in rows and columns",
     },
     {
-      question: "In the context of gradient descent, what does a 'gradient' represent?",
+      question: "What do the 'elements' of a matrix refer to?",
       options: [
-        "The magnitude of the loss function",
-        "A vector pointing in the direction of steepest increase in loss",
-        "The learning rate",
-        "The current value of the weights",
+        "The brackets surrounding the numbers",
+        "The empty spaces within the matrix",
+        "The individual values or numbers inside the matrix",
+        "The dimensions of the matrix",
       ],
-      correctAnswer: "A vector pointing in the direction of steepest increase in loss",
+      correctAnswer: "The individual values or numbers inside the matrix",
     },
     {
-      question: "What is the purpose of the 'learning rate' (α) in the gradient descent update formula?",
+      question: "How are the dimensions of a matrix typically expressed?",
       options: [
-        "It determines the initial value of the weights",
-        "It controls how large a step is taken during each update",
-        "It represents the total number of iterations",
-        "It defines the type of loss function used",
+        "Number of columns + Number of rows",
+        "Number of rows × Number of columns",
+        "Number of elements total",
+        "The sum of all elements",
       ],
-      correctAnswer: "It controls how large a step is taken during each update",
+      correctAnswer: "Number of rows × Number of columns",
     },
     {
-      question: "If the gradient at a point is positive, what does it mean for the loss function if you move in that direction?",
+      question: `Given the matrix A = [[1, 3, 5], [7, 9, 11]], what is the element a[1][2]?`,
       options: [
-        "The loss will decrease",
-        "The loss will increase",
-        "The loss will remain constant",
-        "It cannot be determined",
+        "1",
+        "3",
+        "9",
+        "11",
       ],
-      correctAnswer: "The loss will increase",
+      correctAnswer: "11",
     },
     {
-      question: "Which of the following best describes 'weights' in a machine learning model?",
+      question: `What is the dimension of the matrix E = [[2,4], [6,8], [10,12]]?`,
       options: [
-        "Fixed values that never change",
-        "Parameters that control how much influence each input has on the prediction",
-        "The output of the model's predictions",
-        "A measure of the model's accuracy",
+        "3 × 2",
+        "2 × 3",
+        "2 × 2",
+        "3 × 3",
       ],
-      correctAnswer: "Parameters that control how much influence each input has on the prediction",
+      correctAnswer: "3 × 2",
     },
-  ];
+    {
+      question: `What is the element A[1][0] in matrix E = [[1,0,-1], [4,2,5]]?`,
+      options: [
+        "0",
+        "1",
+        "4",
+        "5",
+      ],
+      correctAnswer: "4",
+    },
+    {
+      question: "Which type of matrix has only one row and one or more columns?",
+      options: [
+        "Column Matrix",
+        "Square Matrix",
+        "Row Matrix",
+        "Zero Matrix",
+      ],
+      correctAnswer: "Row Matrix",
+    },
+    {
+      question: "A matrix with the same number of rows and columns is called a:",
+      options: [
+        "Row Matrix",
+        "Column Matrix",
+        "Square Matrix",
+        "Identity Matrix",
+      ],
+      correctAnswer: "Square Matrix",
+    },
+    {
+      question: "In an Identity Matrix, what are the values on the main diagonal?",
+      options: [
+        "0",
+        "Any random numbers",
+        "1",
+        "The same as the number of rows",
+      ],
+      correctAnswer: "1",
+    },
+    {
+      question: "If all elements in a matrix are zero, it is called a:",
+      options: [
+        "Diagonal Matrix",
+        "Identity Matrix",
+        "Zero Matrix",
+        "Row Matrix",
+      ],
+      correctAnswer: "Zero Matrix",
+    },
+    {
+      question: "Which of the following best describes a Diagonal Matrix?",
+      options: [
+        "All elements are zero.",
+        "Only elements on the main diagonal are zero.",
+        "All elements except those on the main diagonal are zero.",
+        "It has only one row.",
+      ],
+      correctAnswer: "All elements except those on the main diagonal are zero.",
+    },
+    {
+      question: "In mathematical notation, what does a_{1,2} represent?",
+      options: [
+        "The element in the second row, first column",
+        "The element in the first row, second column",
+        "The product of 1 and 2",
+        "The sum of 1 and 2",
+      ],
+      correctAnswer: "The element in the first row, second column",
+    },
+    {
+      question: "What is the common starting index for elements in matrices in programming languages like Python?",
+      options: [
+        "1",
+        "0",
+        "2",
+        "Any number",
+      ],
+      correctAnswer: "0",
+    },
+];
 
   const handleStartQuiz = () => {
     setQuizStarted(true);
@@ -183,7 +263,7 @@ const Grad_Desc = () => {
           <h2 className="text-3xl font-black mb-4 mt-[30px]">Introduction to Matrices</h2>
           <p>Authors: Afsah Buraaq, Kartik Garg</p>
           <br /><br />
-          <p className="text-2xl font-bold underline">Understanding the Structure and Dimensions of a Matrix: </p>
+          <p className="text-2xl font-bold underline text-indigo-600">Understanding the Structure and Dimensions of a Matrix: </p>
           <br />
           <p className="text-xl font-bold">What is a Matrix?</p>
           <br />
@@ -248,7 +328,7 @@ For example, the element in the 2nd row and 3rd column is denoted as a2,3.</p>
 <hr/>
 <br /><br /><br />
 
-{/* <p className="text-2xl font-bold underline">Types of Matrices: </p>
+<p className="text-2xl font-bold underline text-indigo-600">Types of Matrices: </p>
 <br />
 <p className="text-2xl font-bold">Row Matrix</p>
 <br />
@@ -286,18 +366,55 @@ other.</p>
 <p>A square matrix is a matrix that has the same number of rows and columns. That is, it is of
 order n × n.</p>
 </div>
+<br /><br /><hr /><br /><br />
+<p className="text-2xl font-bold">Zero Matrix</p>
 <br />
-<p>Eg. </p>
-<div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString(`E = \\begin{matrix} 2 \\\\ 4 \\\\ 6 \\end{matrix}`) }} /> */}
-<p className="text-2xl font-bold underline">Matrix Notation and Indexing </p>
+<p><b><u>Raw Idea</u></b>: A zero matrix is like an empty container—every place is filled with zero.</p>
+<br />
+<div className="bg-pink-100 p-[20px] rounded-sm">
+<b>Formal Defination:</b>
+<p>A zero matrix (or null matrix) is a matrix in which all elements are zero.</p>
+</div>
+<br /><br /><hr /><br /><br />
+<p className="text-2xl font-bold">Diagonal Matrix</p>
+<br />
+<p><b><u>Raw Idea</u></b>: A diagonal matrix has numbers only across the diagonal—like a streak of light running
+from top-left to bottom-right.</p>
+<br />
+<div className="bg-pink-100 p-[20px] rounded-sm">
+<b>Formal Defination:</b>
+<p>A diagonal matrix is a square matrix in which all elements except those on the main diagonal are zero.</p>
+</div>
+<br /><br /><hr /><br /><br />
+<p className="text-2xl font-bold">Identity Matrix</p>
+<br />
+<p><b><u>Raw Idea</u></b>: An identity matrix is like the number 1 for multiplication—when you multiply with it, the
+other matrix stays the same</p>
+<br />
+<div className="bg-pink-100 p-[20px] rounded-sm">
+<b>Formal Defination:</b>
+<p>An identity matrix is a square matrix in which all the elements on the main diagonal are 1
+and all other elements are 0. It is denoted by I.</p>
+</div>
+<br />
+<p>Multiplying any matrix A with an identity matrix I of the same size gives back matrix A:</p>
+<br />
+<div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString(`A * I = I * A = A`) }} />
+
+<br /><br /><hr />
+
+
+
+<br /><br />
+<p className="text-2xl font-bold underline text-indigo-600">Matrix Notation and Indexing </p>
 <br />
 <div className="flex items-center">
-<p className="mr-[10px]">The element at first row and second column in a matrix can be written in 2 ways. First way is : </p>
-<div className="text-[20px]" dangerouslySetInnerHTML={{ __html: renderToString(`a_{1,2}`) }} />
+<p className="mr-[10px]">In mathematics, we typically use 1-based indexing. So, a_1,2
+​
+  directly points to the element in the first row and second column</p>
 </div>
-<p>And the second way is : A[1][2]</p>
 <br />
-<p>The general rule is - First row, then column</p>
+<p>However, in programming (like with Python's list of lists, [[1,2,3], [4, 5, 6]]), we usually use 0-based indexing. This means the first row is at index 0, the second row at index 1, and so on. Similarly, the first column is at index 0, the second at index 1, and so forth. Therefore, to get the element in the first row and second column (which is 2 in your example), you'd write A[0][1].</p> 
 <br />
 <b>Common Confusion: 1-Based vs 0-Based Indexing</b>
 <br /><br />
@@ -341,11 +458,11 @@ order n × n.</p>
           {/* Interactive Quiz Section */}
           <hr />
           <div className="mt-12 p-6 bg-white rounded-lg shadow-md">
-            <h2 className="text-3xl font-black mb-6 text-center">Test Your Knowledge: Gradients & Gradient Descent</h2>
+            <h2 className="text-3xl font-black mb-6 text-center">Test Your Knowledge: Introduction to Matrices</h2>
 
             {!quizStarted && !quizResults && (
               <div className="text-center">
-                <p className="text-lg mb-6">Ready to test your understanding of Gradients and Gradient Descent?</p>
+                <p className="text-lg mb-6">Ready to test your understanding of Matrices?</p>
                 <button
                   onClick={handleStartQuiz}
                   className="bg-[#0000ff] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#0000cc] transition-colors duration-300"
