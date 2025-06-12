@@ -11,34 +11,9 @@ import 'katex/dist/katex.min.css';
 import { renderToString } from 'katex';
 import { TiTick } from "react-icons/ti";
 import Confetti from 'react-confetti-boom';
+import { mathCategories } from "../mathCategories";
 
 import "./style.css";
-
-const guideCategories = [
-  {
-    title:"Calculus in AI and ML",
-    modules: [
-      {id: "diff_calc_part_deriv", title:"Differential Calculus and Partial Derivatives", description: "Differential calculus enables AI/ML models to optimize functions, compute gradients, and enhance learning efficiency, while Partial derivatives measure how a function changes with respect to one variable"},
-      {id: "gradients_desc", title:"Gradients and Gradient Descent", description: "Gradient descent is a numerical method for iteratively minimizing a function by repeatedly taking steps in the direction of the negative gradient. "},
-    
-    ]
-  },
-  {
-    title: "Statistics",
-    modules: [
-      { id: "normal_distr", title: "Normal Distributions", description: "Lorem, ipsum dolor sit amet consectetur adipisicing." },
-      { id: "mean_median_mode", title: "Mean, median, mode", description: "Lorem, ipsum dolor sit amet consectetur adipisicing." },
-      { id: "quantiles", title: "Quantiles", description: "Lorem, ipsum dolor sit amet consectetur adipisicing." },
-    ],
-  },
-  {
-    title: "Matrix",
-    modules: [
-      { id: "eigenvals", title: "Eigenvalues", description: "Lorem, ipsum dolor sit amet consectetur adipisicing." },
-      { id: "determinant", title: "Determinant", description: "Lorem, ipsum dolor sit amet consectetur adipisicing." },
-    ],
-  },
-];
 
 
 const DiffCalcPage = () => {
@@ -190,13 +165,13 @@ const DiffCalcPage = () => {
       <Navbar />
       {quizResults === "passed" && <Confetti mode="boom" x={0.5} y={0.5} size={150} direction="up" />}
 
-      <div className="min-h-screen bg- text-gray-800 flex ">
+      <div className="min-h-screen text-gray-800 flex ">
         {/* Sidebar Navigation */}
         <div className="w-[350px] fixed top-0 left-0 h-screen overflow-y-auto bg-white shadow-md p-4 z-10">
           <p className="text-[24px] mb-[20px] font-bold text-center">Mathematical Prerequisites</p>
           <hr />
           <div className="mt-[30px]"></div>
-          {guideCategories.map((category) => (
+          {mathCategories.map((category) => (
             <div key={category.title} className="border-b mb-4">
               <h4 className="text-lg font-semibold mb-2">{category.title}</h4>
               <ul className="list-none pl-2">

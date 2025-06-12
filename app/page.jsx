@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useEmblaAutoplay } from "../lib/useEmblaAutoplay";
 import { IoPersonSharp } from "react-icons/io5";
 import { FaBookOpen, FaPenAlt, FaLaptopCode, FaRocket, FaLightbulb } from "react-icons/fa";
-
+import Team from "./components/team";
 import { Card, CardContent } from "../components/ui/card";
 import {
   Carousel,
@@ -27,7 +27,7 @@ function RotatingSphere() {
 
   useFrame(() => {
     if (sphereRef.current) {
-      sphereRef.current.rotation.y += 0.008 // Only Y-axis rotation
+      sphereRef.current.rotation.y += 0.02 // Only Y-axis rotation
     }
   })
 
@@ -109,13 +109,6 @@ const HomePage = () => {
   const autoplay = useEmblaAutoplay();
   return (
     <>
-    <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
-        <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[3, 2, 5]} />
-          <RotatingSphere />
-        </Canvas>
-      </div>
     <div className="min-h-screen bg-gray-50 text-gray-800">
       <header className="z-50">
 
@@ -181,6 +174,9 @@ const HomePage = () => {
           </Carousel>
         </div>
       </section>
+      <div className="bg-white">
+      <Team />
+      </div>
     </div>
     </>
   );

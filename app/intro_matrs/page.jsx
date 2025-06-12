@@ -9,11 +9,6 @@ import Image from "next/image";
 import 'katex/dist/katex.min.css';
 import { renderToString } from 'katex';
 import { TiTick } from "react-icons/ti";
-import img1 from "./img1.png"
-import img2 from "./img2.png"
-import img3 from "./img3.png"
-import img4 from "./img4.png"
-import img5 from "./img5.png"
 import { mathCategories } from "../mathCategories";
 
 
@@ -41,7 +36,7 @@ const Grad_Desc = () => {
 
         if (docSnap.exists()) {
           setCompletedModules(docSnap.data().completedModules || {});
-          setStatus(docSnap.data().completedModules["gradients_desc"] || "not started");
+          setStatus(docSnap.data().completedModules["intro_matrs"] || "not started");
         } else {
           await setDoc(docRef, { completedModules: {} });
         }
@@ -56,7 +51,7 @@ const Grad_Desc = () => {
 
     try {
       const docRef = doc(db, "users", user.uid);
-      let updatedModules = { ...completedModules, ["gradients_desc"]: newStatus };
+      let updatedModules = { ...completedModules, ["intro_matrs"]: newStatus };
 
       await updateDoc(docRef, { completedModules: updatedModules });
       setCompletedModules(updatedModules);
@@ -171,7 +166,7 @@ const Grad_Desc = () => {
                   <li
                     key={module.id}
                     className={`cursor-pointer p-2 hover:text-[#0000ff] rounded mb-2 ${
-                      module.id === "gradients_desc" ? "text-[#0000ff] font-bold" : ""
+                      module.id === "intro_matrs" ? "text-[#0000ff] font-bold" : ""
                     }`}
                     onClick={() => router.push(`/${module.id}`)}
                   >
@@ -184,189 +179,142 @@ const Grad_Desc = () => {
         </div>
 
         {/* Module Content */}
-        <div className="flex-grow p-6 ml-[400px]">
-          <h2 className="text-3xl font-black mb-4 mt-[30px]">Gradients and Gradient Descent</h2>
-          <p>Authors: Kartik Garg, Trisanu Das</p>
-          <br />
-          <p className="text-lg">
-            Imagine that you are standing at some point on a hill, and your goal is to get to the lowest point possible.
-            So, you take small steps, always downhill.
-          </p>
-          <br />
-          <br />
-          <div className="flex justify-center">
-            <Image src={img1} width={400} height={400} alt="slope" />
-          </div>
-          <br />
-          <br />
-
-          <p className="text-lg mb-[30px]">
-            That’s exactly what <b>gradient descent</b> does. It helps the machine learning model learn by{" "}
-            <b>minimizing error</b>, one small step at a time.
-          </p>
-          <hr />
-          <h2 className="text-3xl font-black mb-4 mt-[30px]">Intuition</h2>
-          <p className="text-lg">
-            At the heart of machine learning is this idea: "We have a model, and we want to{" "}
-            <b>make it better by minimizing its mistakes."</b> These "mistakes" are measured using a{" "}
-            <b>loss function</b> — a formula that tells us <i>how far off</i> our predictions are from the correct
-            answers.{" "}
-          </p>
-          <br />
-          <p className="text-lg">So the goal becomes:</p>
-          <p className="text-lg">Find value of the model's parameters (like weights* and bias*), that minimizes the loss function.</p>
-          <br />
-          <p className="text-lg">
-            But how do we know <b>which direction to change the weights</b> in order to reduce the loss? That’s where{" "}
-            <b>gradients</b> come in.
-          </p>
-          <p></p>
-          <br />
-          <br />
-          <br />
-          <div className="flex justify-center">
-            <div className="bg-[#b3b3b5] w-[500px] h-[1px]"></div>
-          </div>
-          <br />
-          <br />
-          <br />
-          <div className="text-base text-gray-800 space-y-4 ">
-            <p>
-              <span className="font-semibold">Weights and Biases:</span>
-            </p>
-
-            <p>
-              In machine learning, we use an equation (called the <span className="font-semibold">loss function</span>) to
-              measure how well our model is predicting the target values. To improve the model, we adjust the{" "}
-              <span className="font-semibold">coefficients</span> of the input variables — these are called{" "}
-              <span className="font-semibold"> weights</span>. A weight controls <span className="italic">
-                how much influence
-              </span>{" "}
-              each input has on the final prediction. The larger the weight, the more that input matters.
-            </p>
-
-            <p>
-              The <span className="font-semibold">bias</span> is like the equation’s{" "}
-              <span className="italic"> starting point</span> — it lets the model make non-zero predictions even when all
-              inputs are zero. You can think of it as the intercept in a straight-line equation.
-            </p>
-
-            <p>
-              <span className="font-semibold">Example:</span>
-            </p>
-
-            <p>Suppose we are predicting a student's test score based on four factors:</p>
-
-            <ul className="list-disc list-inside space-y-1">
-              <li>Study hours (x₁)</li>
-              <li>Sleep hours (x₂)</li>
-              <li>Attendance (x₃)</li>
-              <li>Previous grades (x₄)</li>
-            </ul>
-
-            <p>The prediction model can be written as:</p>
-
-            <p className="font-mono text-gray-700">ŷ = w₁·x₁ + w₂·x₂ + w₃·x₃ + w₄·x₄ + b</p>
-
-            <p>
-              Here, <span className="font-semibold">w₁, w₂, w₃, w₄</span> are the weights showing how important each
-              factor is, and <span className="font-semibold">b</span> is the bias that shifts the whole prediction up or
-              down.
-            </p>
-          </div>
-          <br />
-          <br />
-          <hr />
-          <br />
-          <br />
-          <p className="text-lg">Think of a loss function like a simple U-shaped curve: </p>
-          <br />
-          <div className="text-lg flex justify-center" dangerouslySetInnerHTML={{ __html: renderToString("f(w) = (w-3)^2") }} />
-          <br />
-          <p className="text-lg">
-            Suppose we set the weight <code>w</code> to 5 — that means we're starting high up on the curve. But we know
-            the lowest point (the minimum) is at <code>w = 0</code>, so our goal is to slide down toward it (The slope at
-            any point on the curve tells us how steep the descent is.) In calculus, this slope is what we call the{" "}
-            <strong>derivative</strong> — something you’ve already seen earlier.
-          </p>
-          <br />
-          <div className="flex justify-center">
-            <Image src={img2} width={400} height={400} alt="slope" />
-          </div>
-          <br />
-          <br />
-          <hr />
-          <br />
-          <br />
-          <h2 className="text-3xl font-black mb-4">Gradients</h2>
-          <p className="text-lg">
-            The gradient is just a way to bundle all the partial derivatives together. It’s a vector (an arrow) pointing
-            in the direction of the steepest <b><i>increase</i></b> in loss.
-          </p>
-          <p className="text-lg">So if:</p>
-          <br />
-          <ul style={{ listStyleType: "disc" }}>
-            <li>
-              <div className="text-[20px]" dangerouslySetInnerHTML={{ __html: renderToString("\\frac{\\partial L}{\\partial w_1} = 6") }} />
-            </li>
-            <br />
-            <li>
-              <div className="text-[20px]" dangerouslySetInnerHTML={{ __html: renderToString("\\frac{\\partial L}{\\partial w_2} = 4") }} />
-            </li>
-          </ul>
-          <br />
-          <p className="text-lg">Then the gradient is : [6,4]. </p>
-          <br />
-          <p className="text-lg">
-            This means: If you increase w₁, the loss increases by 6, and if you increase w₂, the loss increases by 4. So, to minimize the loss, you want to go in the <b>opposite direction of the
-            gradient.</b>
-          </p>
-          <br />
-          <br />
-          <hr />
-          <br />
-          <br />
-          <h2 className="text-3xl font-black mb-4">Gradient Descent</h2>
-          <p className="text-lg">
-            If you have a current weight value w, and you know the derivative (the gradient that is in the increasing
-            direction), then you update like this:
-          </p>
-          <br />
-          <div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString("w = w - \\alpha * \\frac{\\partial L}{\\partial w}") }} />
-          <br />
-          <p className="text-lg">
-            Where w is the weight, and α is the learning rate, a small positive number (like 0.01) that controls how{" "}
-            <i>big a step</i> you take. So, each weight decreases in the opposite direction of the gradient (that's why
-            the negative sign) multiplied by a constant value - the learning rate.
-          </p>
-          <br />
-          <br />
-          <div
-            className="flex justify-center"
-          >
-            <p
-              className="border-[2px] p-[40px] px-[50px] w-[800px] text-lg"
-              style={{
-                clipPath:
-                  "polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%)",
-              }}
-            >
-              At this stage, many might wonder: if we use a constant learning rate—meaning each step we take is of the
-              same size—there's a chance the model could overshoot the minimum point of the function. To address this
-              issue, researchers have developed techniques known as adaptive learning rates, which we'll explore in a later
-              module.
-            </p>
-          </div>
-          <br />
-          <br />
-          <p className="text-lg">An example of Gradient Descent at work is below:</p>
+        <div className="flex-grow p-6 ml-[400px] text-lg">
+          <h2 className="text-3xl font-black mb-4 mt-[30px]">Introduction to Matrices</h2>
+          <p>Authors: Afsah Buraaq, Kartik Garg</p>
           <br /><br />
-          <div className="flex justify-center ">
-            <Image src={img4} width={400} height={400} alt="slope" />
-            <Image src={img5} width={500} height={400} alt="slope" />
-          </div>
+          <p className="text-2xl font-bold underline">Understanding the Structure and Dimensions of a Matrix: </p>
           <br />
+          <p className="text-xl font-bold">What is a Matrix?</p>
           <br />
+          <p>A matrix is a rectangular arrangement of objects—most often numbers—placed in rows and
+columns. Think of it like a neatly organized table where each box holds a value. These values
+are called the <b>elements</b> of the matrix.</p>
+<br />
+<p>We write a matrix by placing its elements inside large square brackets. The order of the
+numbers tells us how they are arranged: first by row; then by column.</p>
+
+<br />
+<div className="bg-pink-100 p-[20px] rounded-sm">
+<b>Formal Defination:</b>
+<p>A matrix is a rectangular array of values arranged in horizontal rows and vertical columns.
+Each value is called an element. A matrix is usually enclosed in brackets and may contain
+numbers, symbols, or expressions.</p>
+<br />
+<p><b>Dimensions of a matrix</b> = Number of rows × Number of columns</p>
+
+</div>
+<br />
+<p>Each element in a matrix is identified by its position: the row it is in and the column it is in.
+For example, the element in the 2nd row and 3rd column is denoted as a2,3.</p>
+<p>Let’s see an example matrix:</p>
+<br />
+<div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString(`[\\begin{matrix} 1 & 3 & 5\\\\ 7 & 9 & 11 \\end{matrix}]`) }} />
+<br />
+<p>Here:</p>
+<p>• Matrix A has 2 rows and 3 columns</p>
+<p>
+• The element a1,2 = 3; this means the value in row 1, column 2 is 3</p>
+<p>• The element a2,3 = 11</p>
+
+<br /><br /> <hr /><br /><br />
+<div className="bg-pink-100 p-[20px] rounded-sm">
+<b>Question 1: What is the dimension of the matrix below?</b>
+<br /><br />
+<div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString(`E = [\\begin{matrix} 2 & 4\\\\6 & 8\\\\10 & 12 \\end{matrix}]`) }} />
+<div className="ml-[20px]">
+<p>A) 3 × 2</p>
+<p>B) 2 × 3</p>
+<p>C) 2 × 2</p>
+<p>D) 3 × 3</p>
+
+</div>
+<br />
+<hr />
+<br />
+<p><b>Answer :</b> A)</p>
+</div>
+<br />
+<div className="bg-pink-100 p-[20px] rounded-sm">
+<b>Q2. What is the element a2,1 in matrix A</b>
+<br /><br />
+<div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString(`E = [\\begin{matrix} 1 & 0 & -1\\\\4 & 2 & 5\\end{matrix}]`) }} />
+<br />
+<hr />
+<br />
+<p><b>Answer :</b> 4</p>
+</div>
+<br /><br /><br />
+<hr/>
+<br /><br /><br />
+
+{/* <p className="text-2xl font-bold underline">Types of Matrices: </p>
+<br />
+<p className="text-2xl font-bold">Row Matrix</p>
+<br />
+<p><b><u>Raw Idea</u></b>: A row matrix is like a single shelf with boxes arranged left to right. All the data is in a
+single horizontal line.</p>
+<br />
+<div className="bg-pink-100 p-[20px] rounded-sm">
+<b>Formal Defination:</b>
+<p>A row matrix is a matrix that has only one row and one or more columns. It is of order
+1 × n.</p>
+</div>
+<br />
+<p>Eg. </p>
+<div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString(`E = [\\begin{matrix} 1 & 2 & 3 & 4\\end{matrix}]`) }} />
+<br /><br /><hr /><br /><br />
+<p className="text-2xl font-bold">Column Matrix</p>
+<br />
+<p><b><u>Raw Idea</u></b>: Think of a column matrix as a vertical stack—like books on a tower—one on top of the
+other.</p>
+<br />
+<div className="bg-pink-100 p-[20px] rounded-sm">
+<b>Formal Defination:</b>
+<p>A column matrix is a matrix that has only one column and one or more rows. It is of order m × 1.</p>
+</div>
+<br />
+<p>Eg. </p>
+<div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString(`E = \\begin{matrix} 2 \\\\ 4 \\\\ 6 \\end{matrix}`) }} />
+<br /><br /><hr /><br /><br />
+<p className="text-2xl font-bold">Square Matrix</p>
+<br />
+<p><b><u>Raw Idea</u></b>: A square matrix is like a perfect chessboard—same number of rows and columns.</p>
+<br />
+<div className="bg-pink-100 p-[20px] rounded-sm">
+<b>Formal Defination:</b>
+<p>A square matrix is a matrix that has the same number of rows and columns. That is, it is of
+order n × n.</p>
+</div>
+<br />
+<p>Eg. </p>
+<div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString(`E = \\begin{matrix} 2 \\\\ 4 \\\\ 6 \\end{matrix}`) }} /> */}
+<p className="text-2xl font-bold underline">Matrix Notation and Indexing </p>
+<br />
+<div className="flex items-center">
+<p className="mr-[10px]">The element at first row and second column in a matrix can be written in 2 ways. First way is : </p>
+<div className="text-[20px]" dangerouslySetInnerHTML={{ __html: renderToString(`a_{1,2}`) }} />
+</div>
+<p>And the second way is : A[1][2]</p>
+<br />
+<p>The general rule is - First row, then column</p>
+<br />
+<b>Common Confusion: 1-Based vs 0-Based Indexing</b>
+<br /><br />
+<div className="bg-pink-100 p-[20px] rounded-sm">
+<b>Formal Explanation:</b>
+
+<ul style={{listStyleType:"disc"}} className="ml-[20px]">
+<li><div className="flex items-center gap-1">
+<p>In mathematics, indexing starts from 1. So the top-left element is </p><div className="text-[20px]" dangerouslySetInnerHTML={{ __html: renderToString(`a_{1,1}`) }} />
+</div></li>
+<li><p>In programming languages like Python, indexing starts from 0. So the top-left element is A[0][0].</p></li>
+</ul>
+</div>
+
+
+
+
 
           <hr />
           <div className="flex justify-center items-center mt-[70px] mb-[80px]">

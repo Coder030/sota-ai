@@ -28,9 +28,8 @@ function Navbar() {
   const [selectedTopic, setSelectedTopic] = useState(""); // Default topic selection
 
   const navLinks = [
-    { name: "Our Team", path: "/team" },
+    { name: "Guide", path: "/guide" },
     { name: "Lectures", path: "/lectures" },
-     { name: "Guide", path: "/guide" },
   ];
 
   useEffect(() => {

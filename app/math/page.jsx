@@ -11,32 +11,7 @@ import { Atom } from "react-loading-indicators";
 import { useRouter } from "next/navigation";
 import LoginModal from "../components/LoginModal";
 import SignupModal from "../components/SignupModal";
-
-
-const guideCategories = [
-  {
-    title:"Calculus in AI and ML",
-    modules: [
-      {id: "diff_calc_part_deriv", title:"Differential Calculus and Partial Derivatives", description: "Differential calculus enables AI/ML models to optimize functions, compute gradients, and enhance learning efficiency, while Partial derivatives measure how a function changes with respect to one variable"},
-      {id: "gradients_desc", title:"Gradients and Gradient Descent", description: "Gradient descent is a numerical method for iteratively minimizing a function by repeatedly taking steps in the direction of the negative gradient. "},
-    ]
-  },
-  {
-    title: "Statistics",
-    modules: [
-      { id: "normal_distr", title: "Normal Distributions", description: "Lorem, ipsum dolor sit amet consectetur adipisicing." },
-      { id: "mean_median_mode", title: "Mean, median, mode", description: "Lorem, ipsum dolor sit amet consectetur adipisicing." },
-      { id: "quantiles", title: "Quantiles", description: "Lorem, ipsum dolor sit amet consectetur adipisicing." },
-    ],
-  },
-  {
-    title: "Matrix",
-    modules: [
-      { id: "eigenvals", title: "Eigenvalues", description: "Lorem, ipsum dolor sit amet consectetur adipisicing." },
-      { id: "determinant", title: "Determinant", description: "Lorem, ipsum dolor sit amet consectetur adipisicing." },
-    ],
-  },
-];
+import { mathCategories } from "../mathCategories";
 
 const GuidePage = () => {
   const router = useRouter();
@@ -95,7 +70,7 @@ useEffect(() => {
     var all = 0;
     var sum = 0;
     var sum2 = 0;
-    guideCategories.map((topic) => {
+    mathCategories.map((topic) => {
       const category = topic;
       const completed = category.modules.filter(module => completedModules[module.id] == "completed").length;
       const skipped = category.modules.filter(module => completedModules[module.id] == "skipped").length
@@ -161,7 +136,7 @@ useEffect(() => {
 
       {user && !loading && (
         <div className="flex flex-col gap-10 ml-[2%] sm:ml-[10%]">
-          {guideCategories.map((category, index) => (
+          {mathCategories.map((category, index) => (
             <div key={index} className="flex items-start pb-[50px] border-b-1">
               
               {/* 🔹 Topic Titles Aligned on the Left */}
