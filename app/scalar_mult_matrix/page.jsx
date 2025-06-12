@@ -36,7 +36,7 @@ const Grad_Desc = () => {
 
         if (docSnap.exists()) {
           setCompletedModules(docSnap.data().completedModules || {});
-          setStatus(docSnap.data().completedModules["intro_matrs"] || "not started");
+          setStatus(docSnap.data().completedModules["scalar_mult_matrix"] || "not started");
         } else {
           await setDoc(docRef, { completedModules: {} });
         }
@@ -51,7 +51,7 @@ const Grad_Desc = () => {
 
     try {
       const docRef = doc(db, "users", user.uid);
-      let updatedModules = { ...completedModules, ["intro_matrs"]: newStatus };
+      let updatedModules = { ...completedModules, ["scalar_mult_matrix"]: newStatus };
 
       await updateDoc(docRef, { completedModules: updatedModules });
       setCompletedModules(updatedModules);
@@ -246,7 +246,7 @@ const Grad_Desc = () => {
                   <li
                     key={module.id}
                     className={`cursor-pointer p-2 hover:text-[#0000ff] rounded mb-2 ${
-                      module.id === "intro_matrs" ? "text-[#0000ff] font-bold" : ""
+                      module.id === "scalar_mult_matrix" ? "text-[#0000ff] font-bold" : ""
                     }`}
                     onClick={() => router.push(`/${module.id}`)}
                   >
@@ -260,174 +260,12 @@ const Grad_Desc = () => {
 
         {/* Module Content */}
         <div className="flex-grow p-6 ml-[400px] text-lg">
-          <h2 className="text-3xl font-black mb-4 mt-[30px]">Introduction to Matrices</h2>
+          <h2 className="text-3xl font-black mb-4 mt-[30px]">Scalar Multiplication of a Matrix</h2>
           <p>Authors: Afsah Buraaq, Kartik Garg</p>
           <br /><br />
-          <p className="text-2xl font-bold text-indigo-600">Understanding the Structure and Dimensions of a Matrix: </p>
+          <p className="text-2xl font-bold text-indigo-600">Multiplying Each Element by a Number: </p>
           <br />
-          <p className="text-xl font-bold">What is a Matrix?</p>
-          <br />
-          <p>A matrix is a rectangular arrangement of objects—most often numbers—placed in rows and
-columns. Think of it like a neatly organized table where each box holds a value. These values
-are called the <b>elements</b> of the matrix.</p>
-<br />
-<p>We write a matrix by placing its elements inside large square brackets. The order of the
-numbers tells us how they are arranged: first by row; then by column.</p>
-
-<br />
-<div className="bg-pink-100 p-[20px] rounded-sm">
-<b>Formal Defination:</b>
-<p>A matrix is a rectangular array of values arranged in horizontal rows and vertical columns.
-Each value is called an element. A matrix is usually enclosed in brackets and may contain
-numbers, symbols, or expressions.</p>
-<br />
-<p><b>Dimensions of a matrix</b> = Number of rows × Number of columns</p>
-
-</div>
-<br />
-<p>Each element in a matrix is identified by its position: the row it is in and the column it is in.
-For example, the element in the 2nd row and 3rd column is denoted as a2,3.</p>
-<p>Let’s see an example matrix:</p>
-<br />
-<div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString(`[\\begin{matrix} 1 & 3 & 5\\\\ 7 & 9 & 11 \\end{matrix}]`) }} />
-<br />
-<p>Here:</p>
-<p>• Matrix A has 2 rows and 3 columns</p>
-<p>
-• The element a1,2 = 3; this means the value in row 1, column 2 is 3</p>
-<p>• The element a2,3 = 11</p>
-
-<br /><br /> <hr /><br /><br />
-<div className="bg-pink-100 p-[20px] rounded-sm">
-<b>Question 1: What is the dimension of the matrix below?</b>
-<br /><br />
-<div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString(`E = [\\begin{matrix} 2 & 4\\\\6 & 8\\\\10 & 12 \\end{matrix}]`) }} />
-<div className="ml-[20px]">
-<p>A) 3 × 2</p>
-<p>B) 2 × 3</p>
-<p>C) 2 × 2</p>
-<p>D) 3 × 3</p>
-
-</div>
-<br />
-<hr />
-<br />
-<p><b>Answer :</b> A)</p>
-</div>
-<br />
-<div className="bg-pink-100 p-[20px] rounded-sm">
-<b>Q2. What is the element a2,1 in matrix A</b>
-<br /><br />
-<div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString(`E = [\\begin{matrix} 1 & 0 & -1\\\\4 & 2 & 5\\end{matrix}]`) }} />
-<br />
-<hr />
-<br />
-<p><b>Answer :</b> 4</p>
-</div>
-<br /><br /><br />
-<hr/>
-<br /><br /><br />
-
-<p className="text-2xl font-bold text-indigo-600">Types of Matrices: </p>
-<br />
-<p className="text-2xl font-bold">Row Matrix</p>
-<br />
-<p><b><u>Raw Idea</u></b>: A row matrix is like a single shelf with boxes arranged left to right. All the data is in a
-single horizontal line.</p>
-<br />
-<div className="bg-pink-100 p-[20px] rounded-sm">
-<b>Formal Defination:</b>
-<p>A row matrix is a matrix that has only one row and one or more columns. It is of order
-1 × n.</p>
-</div>
-<br />
-<p>Eg. </p>
-<div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString(`E = [\\begin{matrix} 1 & 2 & 3 & 4\\end{matrix}]`) }} />
-<br /><br /><hr /><br /><br />
-<p className="text-2xl font-bold">Column Matrix</p>
-<br />
-<p><b><u>Raw Idea</u></b>: Think of a column matrix as a vertical stack—like books on a tower—one on top of the
-other.</p>
-<br />
-<div className="bg-pink-100 p-[20px] rounded-sm">
-<b>Formal Defination:</b>
-<p>A column matrix is a matrix that has only one column and one or more rows. It is of order m × 1.</p>
-</div>
-<br />
-<p>Eg. </p>
-<div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString(`E = \\begin{matrix} 2 \\\\ 4 \\\\ 6 \\end{matrix}`) }} />
-<br /><br /><hr /><br /><br />
-<p className="text-2xl font-bold">Square Matrix</p>
-<br />
-<p><b><u>Raw Idea</u></b>: A square matrix is like a perfect chessboard—same number of rows and columns.</p>
-<br />
-<div className="bg-pink-100 p-[20px] rounded-sm">
-<b>Formal Defination:</b>
-<p>A square matrix is a matrix that has the same number of rows and columns. That is, it is of
-order n × n.</p>
-</div>
-<br /><br /><hr /><br /><br />
-<p className="text-2xl font-bold">Zero Matrix</p>
-<br />
-<p><b><u>Raw Idea</u></b>: A zero matrix is like an empty container—every place is filled with zero.</p>
-<br />
-<div className="bg-pink-100 p-[20px] rounded-sm">
-<b>Formal Defination:</b>
-<p>A zero matrix (or null matrix) is a matrix in which all elements are zero.</p>
-</div>
-<br /><br /><hr /><br /><br />
-<p className="text-2xl font-bold">Diagonal Matrix</p>
-<br />
-<p><b><u>Raw Idea</u></b>: A diagonal matrix has numbers only across the diagonal—like a streak of light running
-from top-left to bottom-right.</p>
-<br />
-<div className="bg-pink-100 p-[20px] rounded-sm">
-<b>Formal Defination:</b>
-<p>A diagonal matrix is a square matrix in which all elements except those on the main diagonal are zero.</p>
-</div>
-<br /><br /><hr /><br /><br />
-<p className="text-2xl font-bold">Identity Matrix</p>
-<br />
-<p><b><u>Raw Idea</u></b>: An identity matrix is like the number 1 for multiplication—when you multiply with it, the
-other matrix stays the same</p>
-<br />
-<div className="bg-pink-100 p-[20px] rounded-sm">
-<b>Formal Defination:</b>
-<p>An identity matrix is a square matrix in which all the elements on the main diagonal are 1
-and all other elements are 0. It is denoted by I.</p>
-</div>
-<br />
-<p>Multiplying any matrix A with an identity matrix I of the same size gives back matrix A:</p>
-<br />
-<div className="text-[20px] text-center" dangerouslySetInnerHTML={{ __html: renderToString(`A * I = I * A = A`) }} />
-
-<br /><br /><hr />
-
-
-
-<br /><br />
-<p className="text-2xl font-bold text-indigo-600">Matrix Notation and Indexing </p>
-<br />
-<div className="flex items-center">
-<p className="mr-[10px]">In mathematics, we typically use 1-based indexing. So, a_1,2
-​
-  directly points to the element in the first row and second column</p>
-</div>
-<br />
-<p>However, in programming (like with Python's list of lists, [[1,2,3], [4, 5, 6]]), we usually use 0-based indexing. This means the first row is at index 0, the second row at index 1, and so on. Similarly, the first column is at index 0, the second at index 1, and so forth. Therefore, to get the element in the first row and second column (which is 2 in your example), you'd write A[0][1].</p> 
-<br />
-<b>Common Confusion: 1-Based vs 0-Based Indexing</b>
-<br /><br />
-<div className="bg-pink-100 p-[20px] rounded-sm">
-<b>Formal Explanation:</b>
-
-<ul style={{listStyleType:"disc"}} className="ml-[20px]">
-<li><div className="flex items-center gap-1">
-<p>In mathematics, indexing starts from 1. So the top-left element is </p><div className="text-[20px]" dangerouslySetInnerHTML={{ __html: renderToString(`a_{1,1}`) }} />
-</div></li>
-<li><p>In programming languages like Python, indexing starts from 0. So the top-left element is A[0][0].</p></li>
-</ul>
-</div>
+        
 
 
 
