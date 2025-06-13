@@ -192,7 +192,8 @@ const Grad_Desc = () => {
         {/* Module Content */}
         <div className="flex-grow p-6 ml-[400px] text-lg">
           <h2 className="text-3xl font-black mb-4 mt-[30px]">Transpose and Multiplication of Matrices</h2>
-          <p>Authors: Afsah Buraaq, Kartik Garg</p>
+          <p>Author: Afsah Buraaq</p>
+          <p className="text-[17px] text-[#545353]">Co - Author : Kartik Garg </p>
           <br /><br />
           <p className="text-2xl font-bold text-indigo-600">Transpose of a Matrix </p>
           <br />
@@ -307,79 +308,6 @@ rating.</p>
             </div>
           </div>
 
-          {/* Interactive Quiz Section */}
-          <hr />
-          <div className="mt-12 p-6 bg-white rounded-lg shadow-md">
-            <h2 className="text-3xl font-black mb-6 text-center">Test Your Knowledge: Transpose and Multiplication of Matrices</h2>
-
-            {!quizStarted && !quizResults && (
-              <div className="text-center">
-                <p className="text-lg mb-6">Ready to test your understanding of Matrices?</p>
-                <button
-                  onClick={handleStartQuiz}
-                  className="bg-[#0000ff] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#0000cc] transition-colors duration-300"
-                >
-                  Start Quiz
-                </button>
-              </div>
-            )}
-
-            {quizStarted && !quizResults && (
-              <div className="quiz-container">
-                <p className="text-xl font-semibold mb-4">
-                  Question {currentQuestionIndex + 1} of {quizQuestions.length}
-                </p>
-                <p className="text-lg mb-6">{currentQuestion.question}</p>
-                <div className="options-container grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {currentQuestion.options.map((option, index) => (
-                    <button
-                      key={index}
-                      className={`block w-full text-left p-4 border rounded-lg transition-colors duration-200 
-                                  ${selectedAnswer === option ? "bg-[#e0e7ff] border-[#0000ff]" : "bg-gray-50 hover:bg-gray-100 border-gray-200"}`}
-                      onClick={() => handleAnswerSelection(option)}
-                    >
-                      {option}
-                    </button>
-                  ))}
-                </div>
-                <div className="flex justify-end mt-8">
-                  <button
-                    onClick={handleNextQuestion}
-                    disabled={selectedAnswer === null}
-                    className={`px-8 py-3 rounded-lg text-lg font-semibold transition-colors duration-300 
-                                ${selectedAnswer === null ? "bg-gray-300 text-gray-600 cursor-not-allowed" : "bg-[#0000ff] text-white hover:bg-[#0000cc]"}`}
-                  >
-                    {currentQuestionIndex === quizQuestions.length - 1 ? "Finish Quiz" : "Next Question"}
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {quizResults && (
-              <div className="quiz-results text-center">
-                <h3 className="text-2xl font-bold mb-4">Quiz Complete!</h3>
-                {quizResults === "passed" ? (
-                  <>
-                    <p className="text-green-600 text-xl font-semibold mb-2">Congratulations! You passed!</p>
-                    <p className="text-lg">Your score: {score} out of {quizQuestions.length}</p>
-                    <TiTick size={"3em"} className="mx-auto mt-4 text-green-600" />
-                  </>
-                ) : (
-                  <>
-                    <p className="text-red-600 text-xl font-semibold mb-2">Keep practicing! You can do it!</p>
-                    <p className="text-lg">Your score: {score} out of {quizQuestions.length}</p>
-                    <p className="text-md mt-2">You need to score {Math.ceil(quizQuestions.length * 0.8)} or more to pass.</p>
-                  </>
-                )}
-                <button
-                  onClick={handleStartQuiz}
-                  className="mt-8 bg-[#0000ff] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#0000cc] transition-colors duration-300"
-                >
-                  Retake Quiz
-                </button>
-              </div>
-            )}
-          </div>
         </div>
       </div>
     </>

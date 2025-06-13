@@ -204,9 +204,9 @@ const DiffCalcPage = () => {
           <div className="text-[30px] flex justify-center" dangerouslySetInnerHTML={{ __html: renderToString("\\frac{d}{dx}f(x) = \\lim_{\\Delta x \\to 0} \\frac{f(x + \\Delta x) - f(x)}{\\Delta x}") }} />
           <br />
           <p className="text-lg">Here, 
-            $f(x + \\Delta x) - f(x)$
+            f(x+Δx) - f(x)
             represents the variation in the function's value, while 
-            $\\Delta x$
+            Δx
             denotes the small change in the input, helping to determine the rate at which the function changes.</p>
           <br />
           <p className="text-lg">Below are some rules regarding derivatives:</p>

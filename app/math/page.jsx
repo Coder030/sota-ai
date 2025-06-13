@@ -135,12 +135,12 @@ useEffect(() => {
     </div>
 
       {user && !loading && (
-        <div className="flex flex-col gap-10 ml-[2%] sm:ml-[10%]">
+        <div className="max-w-7xl mx-auto flex flex-col gap-10 px-4"> {/* Added max-w-7xl mx-auto and px-4 for padding */}
           {mathCategories.map((category, index) => (
-            <div key={index} className="flex items-start pb-[50px] border-b-1">
+            <div key={index} className="flex flex-col md:flex-row items-center md:items-start pb-[50px] border-b-1 justify-center"> {/* Centered content */}
               
-              {/* 🔹 Topic Titles Aligned on the Left */}
-              <div className="w-[250px] flex-shrink-0 ">
+              {/* 🔹 Topic Titles Aligned on the Left (or top in small screens) */}
+              <div className="w-full md:w-[250px] flex-shrink-0 text-center md:text-left mb-4 md:mb-0"> {/* Adjusted for centering */}
                 <h3 className={`text-2xl font-bold mb-4 ${countCompletedInCategory(category) === 100 ? "line-through text-[#979899]" : ""}`}>
                   {category.title}
                 </h3>
@@ -148,28 +148,28 @@ useEffect(() => {
               </div>
 
               {/* 🔹 Modules are aligned on the same vertical line */}
-              <div className="flex flex-col items-start flex-grow ml-[5%]">
+              <div className="flex flex-col items-center md:items-start flex-grow md:ml-[5%] w-full"> {/* Adjusted for centering */}
                 {category.modules.map((module, idx) => (
-                  <div key={idx}> <div className="flex items-center w-[800px] space-x-4">
-                    <div className="w-full hover:shadow-md cursor-pointer p-6 rounded-md" onClick={() => {
-
-                      router.push(`/${module.id}`)
-                    }}>
-                      <div className="flex items-center gap-1">
-                      <h4 className={`text-xl font-semibold ${completedModules[module.id] == "completed" ? "line-through text-[#979899]" : ""}`}>
-                        {module.title} 
-                      </h4>
-                      {completedModules[module.id] == "skipped" && <p>(Skipped)</p>}
+                  <div key={idx} className="w-full flex flex-col items-center"> {/* Wrap each module with a div for centering */}
+                    <div className="flex flex-col md:flex-row items-center w-full max-w-[800px] space-x-0 md:space-x-4 mb-4"> {/* Adjusted max-w and spacing */}
+                      <div className="w-full hover:shadow-md cursor-pointer p-6 rounded-md text-center md:text-left" onClick={() => {
+                        router.push(`/${module.id}`)
+                      }}>
+                        <div className="flex items-center gap-1 justify-center md:justify-start"> {/* Centered for smaller screens */}
+                        <h4 className={`text-xl font-semibold ${completedModules[module.id] == "completed" ? "line-through text-[#979899]" : ""}`}>
+                          {module.title} 
+                        </h4>
+                        {completedModules[module.id] == "skipped" && <p>(Skipped)</p>}
+                        </div>
+                        <p className={`text-gray-600 ${completedModules[module.id] == "completed" ? "line-through text-[#979899]" : ""}`}>
+                          {module.description}
+                        </p>
                       </div>
-                      <p className={`text-gray-600 ${completedModules[module.id] == "completed" ? "line-through text-[#979899]" : ""}`}>
-                        {module.description}
-                      </p>
+                      <button className={`text-[30px] flex-shrink-0 mt-2 md:mt-0 ${completedModules[module.id] == "completed" ? "text-green-500" : "text-gray-400"}`}> {/* Adjusted button positioning */}
+                        <SiTicktick />
+                      </button>
                     </div>
-                    <button className={`text-[30px] ${completedModules[module.id] == "completed" ? "text-green-500" : "text-gray-400"}`}>
-                      <SiTicktick />
-                    </button>
-                  </div>
-                  {idx < category.modules.length - 1 && <Image src={img} width={5} height={1} alt="line" />}
+                    {idx < category.modules.length - 1 && <Image src={img} width={5} height={1} alt="line" className="my-2" />} {/* Added margin */}
                   </div>
                 ))}
               </div>

@@ -14,6 +14,7 @@ export const mathCategories = [
       { id: "Matr_add_and_subtr", title: "Matrix Addition and Subtraction", description: "Matrix addition and subtraction involve combining or differentiating corresponding elements of two matrices " },
       { id: "scalar_mult_matrix", title: "Scalar Multiplication of a Matrix", description: "Scalar multiplication of a matrix involves multiplying every individual element of the matrix by a single constant number (the scalar)." },
       { id: "transp_mult_matr", title: "Transpose and Multiplication of Matrices", description: "Explore the fundamentals of matrix operations with an interactive module on transposition and multiplication." },
+      { id: "appls_deeper_matr_ideas", title: "Applications and Deeper Matrix Ideas", description: "Why are we learning matrices at all? Because they show up everywhere—from photos on your screen to the neurons in a robot’s brain." },
     ],
   },
 ];

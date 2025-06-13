@@ -129,7 +129,8 @@ const Grad_Desc = () => {
         {/* Module Content */}
         <div className="flex-grow p-6 ml-[400px] text-lg">
           <h2 className="text-3xl font-black mb-4 mt-[30px]">Matrix Addition and Subtraction</h2>
-          <p>Authors: Afsah Buraaq, Kartik Garg</p>
+          <p>Author: Afsah Buraaq</p>
+          <p className="text-[17px] text-[#545353]">Co - Author : Kartik Garg </p>
           <br /><br />
           <p className="text-2xl font-bold text-indigo-600">Conditions for Matrix Addition or Subtraction</p>
           <br />
