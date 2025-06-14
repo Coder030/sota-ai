@@ -13,7 +13,7 @@ const topics = [
   {
     title: "Python Prerequisites",
     description: "Learn the basics of Python needed for ML development.",
-    link: "/python-prerequisites",
+    link: "/python_preq",
   },
   {
     title: "Classical Machine Learning",

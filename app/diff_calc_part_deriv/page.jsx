@@ -6,6 +6,8 @@ import { db, auth, doc, getDoc, updateDoc, onAuthStateChanged } from "../firebas
 import { useRouter } from "next/navigation";
 import Select from 'react-select';
 import img1 from "./img1.png";
+import img2 from "./img2.png";
+
 import Image from "next/image";
 import 'katex/dist/katex.min.css';
 import { renderToString } from 'katex';
@@ -192,7 +194,8 @@ const DiffCalcPage = () => {
         <div className="flex-grow p-6 ml-[400px]">
 
           <h2 className="text-3xl font-black mb-4 mt-[30px]">Differential Calculus</h2>
-          <p>Authors: Kartik Garg, Trisanu Das</p>
+          <p className="text-lg">Author: Trisanu Das</p>
+          <p className="text-[17px] text-[#545353]">Co - Author : Kartik Garg </p>
           <br />
           <p className="text-lg"><u>Basic definition of a derivative:</u> The derivative of a function is defined as the slope of a tangent to the function at a particular point</p>
           <br /><br />
@@ -257,6 +260,26 @@ const DiffCalcPage = () => {
             <div className="text-lg flex justify-center" dangerouslySetInnerHTML={{ __html: renderToString("\\frac{\\partial f}{\\partial y} = 2x + 2y") }} />
           </ul>
           <br /><p className="text-lg mb-[30px]">Each of these tells you the slope in that direction.</p>
+          <br /><br /><hr /><br /><br />
+          <h2 className="text-3xl font-black mb-4 mt-[30px]">Theory of Stationary Points
+</h2>
+<br />
+<p>At a point where the slope is 0, it is like standing on flat ground. This point is called a stationary point. But not all stationary points are the same. There are three types:</p>
+<br />
+<ul className="ml-[30px]" style={{listStyleType:"disc"}}>
+  <li><b>Local Minimum: </b>Like the bottom of a bowl. All nearby points are higher → If you move a little in any direction, the curve goes up.</li>
+  <li><b>Local Maximum: </b>Like the top of a hill. All nearby points are lower.
+→ If you move a little, the curve goes down.</li>
+<li><b>Saddle Point:: </b>Like a mountain pass or a horse saddle. It goes up in some directions and down in others.</li>
+</ul>
+<br />
+<div className="flex justify-center">
+  <Image src={img2}  width={600} height={600} alt="Saddle Point"/>
+</div>
+<br />
+<br />
+
+
 
           <hr />
           <div className="flex justify-center items-center mt-[70px] mb-[80px]">

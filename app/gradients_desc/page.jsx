@@ -187,7 +187,8 @@ const Grad_Desc = () => {
         {/* Module Content */}
         <div className="flex-grow p-6 ml-[400px]">
           <h2 className="text-3xl font-black mb-4 mt-[30px]">Gradients and Gradient Descent</h2>
-          <p>Authors: Kartik Garg, Trisanu Das</p>
+          <p className="text-lg">Author: Trisanu Das</p>
+          <p className="text-[17px] text-[#545353]">Co - Author : Kartik Garg </p>
           <br />
           <p className="text-lg">
             Imagine that you are standing at some point on a hill, and your goal is to get to the lowest point possible.

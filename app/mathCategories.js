@@ -18,3 +18,14 @@ export const mathCategories = [
     ],
   },
 ];
+
+export const pythonCategories = [
+  {
+    title:"Intro to Programming",
+    modules: [
+      {id: "sett_python", title:"Setting up Python", description: "Learn how to run python code"},
+      {id: "oper_and_vars", title:"Operators and Variables", description: "Make calculations, and define and modify variables."},
+      
+    ]
+  },
+]
